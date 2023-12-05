@@ -16,20 +16,150 @@
 			<div class="page-title" style="margin-bottom: 30px">Map</div>
         </div>
 		<div class="map-container">
-			<img src="images/map-image.jpg" alt="Map" id="map">
+			<img src="images/map-image.avif" alt="Map" id="map" draggable="false">
+			<button id="reset-map" class="reset-map-btn">Reset Map</button>
 		</div>
 
+		<script>
+			const mapContainer = document.querySelector('.map-container');
+			const mapImage = document.getElementById('map');
+			const resetButton = document.getElementById('reset-map');
+			let isDragging = false;
+			let dragStartX, dragStartY, dragOffsetX = 0, dragOffsetY = 0, scale = 1;
+			const dragMargin = 50; // Margin for extra freedom in dragging
+			const maxScale = 8; // Maximum zoom level
+
+			function updateMapTransform() {
+				mapImage.style.transform = `translate(${dragOffsetX}px, ${dragOffsetY}px) scale(${scale})`;
+			}
+
+			function getBounds() {
+				const containerRect = mapContainer.getBoundingClientRect();
+				const scaledWidth = mapImage.offsetWidth * scale;
+				const scaledHeight = mapImage.offsetHeight * scale;
+				const extraWidth = Math.max(scaledWidth - containerRect.width, 0);
+				const extraHeight = Math.max(scaledHeight - containerRect.height, 0);
+
+				return {
+					minX: -extraWidth / 2 - dragMargin,
+					maxX: extraWidth / 2 + dragMargin,
+					minY: -extraHeight / 2 - dragMargin,
+					maxY: extraHeight / 2 + dragMargin,
+				};
+			}
+
+			function enforceBounds() {
+				const bounds = getBounds();
+				dragOffsetX = Math.max(Math.min(dragOffsetX, bounds.maxX), bounds.minX);
+				dragOffsetY = Math.max(Math.min(dragOffsetY, bounds.maxY), bounds.minY);
+				updateMapTransform();
+			}
+
+			mapImage.addEventListener('mousedown', function(e) {
+				isDragging = true;
+				dragStartX = e.clientX - dragOffsetX;
+				dragStartY = e.clientY - dragOffsetY;
+				this.style.cursor = 'grabbing';
+			});
+
+			document.addEventListener('mousemove', function(e) {
+				if (isDragging) {
+					dragOffsetX = e.clientX - dragStartX;
+					dragOffsetY = e.clientY - dragStartY;
+					enforceBounds();
+				}
+			});
+
+			document.addEventListener('mouseup', function() {
+				isDragging = false;
+				mapImage.style.cursor = 'grab';
+			});
+
+			mapImage.addEventListener('wheel', function(e) {
+				e.preventDefault();
+				const zoomIntensity = 0.02;
+				const oldScale = scale;
+				scale += e.deltaY * -zoomIntensity;
+				scale = Math.min(Math.max(scale, 1), maxScale); // Enforce min and max scale limits
+
+				// Adjust the drag offsets when zooming
+				const rect = mapContainer.getBoundingClientRect();
+				const x = (e.clientX - rect.left) / oldScale;
+				const y = (e.clientY - rect.top) / oldScale;
+				dragOffsetX -= (x - dragOffsetX) * (scale - oldScale);
+				dragOffsetY -= (y - dragOffsetY) * (scale - oldScale);
+
+				enforceBounds();
+			});
+			
+			function resetMap() {
+				scale = 1;
+				translateX = 0;
+				translateY = 0;
+				mapImage.style.transform = 'translate(0px, 0px) scale(1)';
+			}
+
+			resetButton.addEventListener('click', resetMap);
+			
+		</script>
+
+		<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var imageElement = document.getElementById('map');
+
+			var images = ['images/map-image.png', 'images/map-image0.png'];
+			var currentIndex = 0;
+
+			setInterval(function() {
+				// Switch to the other image
+				currentIndex = (currentIndex + 1) % images.length;
+				imageElement.src = images[currentIndex];
+			}, 750); // Change image every 750 milliseconds (0.75 seconds)
+			
+			// Function to update images
+			function updateImages(newImages) {
+				images = newImages;
+				currentIndex = 0; // Reset the index to start from the first image of the new set
+			}
+
+			// Event listeners for buttons
+			document.getElementById('washroom4').addEventListener('click', function() {
+				updateImages(['images/wroom.png', 'images/wroom0.png']);
+			});
+
+			document.getElementById('atm4').addEventListener('click', function() {
+				updateImages(['images/atm.png', 'images/atm0.png']);
+			});
+
+			document.getElementById('eat4').addEventListener('click', function() {
+				updateImages(['images/eat.png', 'images/eat0.png']);
+			});
+			
+			document.getElementById('base4').addEventListener('click', function() {
+				updateImages(['images/map-image.png', 'images/map-image0.png']);
+			});
+			
+			document.getElementById('info4').addEventListener('click', function() {
+				updateImages(['images/info.png', 'images/info0.png']);
+			});
+			
+		});
+		</script>
+
+
+
+
 		<div class="map-buttons-container">
-			<button class="poi-button" data-type="washroom">Washrooms</button>
-			<button class="poi-button" data-type="atm">ATMs</button>
-			<button class="poi-button" data-type="info">Information Desks</button>
-			<button class="poi-button" data-type="vendor">Vendors</button>
-			<button class="poi-button" data-type="parking">Parking</button>
-			<button class="poi-button" data-type="emergency">Emergency Exits</button>
+			<button class="poi-button" data-type="washroom" id="washroom4">Washrooms</button>
+			<button class="poi-button" data-type="atm" id="atm4">ATMs</button>
+			<button class="poi-button" data-type="eat" id="eat4">Food and Beverage</button>
+			<a href="vendors.html"><button class="poi-button-extra" data-type="vendor" id="vendor4">Vendors</button></a>
+			<button class="poi-button" data-type="base" id="base4">Base Map</button>
+			<button class="poi-button" data-type="info" id="info4">Information Desks</button>
 		</div>
 		<div class="navbar">
 			<a href="index.html"><div class="nav-item">⌂</div></a>
-			<a href="bookmarks.html"><div class="nav-item">✬</div></a>
+			
 			<a onclick="openDialog();"><div class="nav-item">?</div></a>
 		</div>
 		<div id="helpModal" class="modal">
