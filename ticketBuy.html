@@ -109,25 +109,15 @@
 						localStorage.setItem('totalAmount', totalAmount);
 						
 						// Redirect to the checkout page
-						window.location.href = 'checkout.html'; // Replace with your actual checkout page URL
+						window.location.href = 'checkout.html'; 
 					
 					}
 				});
 				
-				document.addEventListener('DOMContentLoaded', function() {
-					// Load saved ticket quantities from localStorage
-					var savedTickets = JSON.parse(localStorage.getItem('tickets'));
-					if (savedTickets) {
-						document.querySelectorAll('.purchase-options input[type="number"]').forEach(function(input) {
-							if (savedTickets[input.name]) {
-								input.value = savedTickets[input.name];
-							}
-						});
-					}
-
-					// Calculate the total after loading the quantities
+				window.onload = function() {
 					calculateTotal();
-				});
+				};
+
 			</script>
 
 		
@@ -178,7 +168,7 @@
 				localStorage.setItem('totalAmount', totalAmount);
 				
 				// Redirect to the checkout page
-				window.location.href = 'checkout.html'; // Replace with your actual checkout page URL
+				window.location.href = 'checkout.html';
 			});
 
 		</script> -->
@@ -192,18 +182,15 @@
 		<div id="helpModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeDialog()">&times;</span>
-				<h2>EventEASE Event Page Guide</h2>
-				<p>Welcome to the EventEASE event discovery page. This guide will help you navigate and utilize the features available on this page.</p>
+				<h2>EventEASE Purchase Tickets Page Guide</h2>
+				<p>Welcome to the EventEASE Purchase Tickets page. This guide will assist you in navigating and utilizing the features available on this page for a smooth ticket purchasing experience.</p>
 
 				<ul>
 					<li>
-						<strong>Exploring Events:</strong> Scroll through the list of events. Each event card provides a snapshot, including an image, event name, description, and timing.
+						<strong>Selecting Ticket Options:</strong> You can choose from single-day passes separated by age and day.  There are multi-day passes for those attending multiple days.  There is a VIP pass for those who want a premium experience.
 					</li>
 					<li>
-						<strong>Adding Events to Your Planner:</strong> Click on the 'Add to Planner' button on any event card to include it in your personal planner.
-					</li>
-					<li>
-						<strong>Viewing Your Daily Planner:</strong> Your selected events will appear in the planner section at the bottom of the page. The planner organizes your events based on their scheduled times.  You can remove an event by clicking the 'X' button next to each event.
+						<strong>Proceeding to Checkout:</strong> Once you have selected your tickets and confirmed the total, click the 'Proceed to Checkout' button.
 					</li>
 				</ul>
 				<p>The navbar at the bottom of the screen helps you navigate through the <strong>EventEASE</strong> app. Use the <strong>home</strong> icon to return to the main menu, and the <strong>question mark</strong> icon to open this help dialog.</p>

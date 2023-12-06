@@ -106,10 +106,7 @@
 				// If validation passes
 				alert('Purchase Successful!');
 
-				// Clear localStorage and other cleanup tasks
-				localStorage.removeItem('tickets');
-				localStorage.removeItem('selectedDay');
-				localStorage.removeItem('totalAmount');
+				
 
 				// Redirect to home page
 				window.location.href = 'index.html';
@@ -149,18 +146,18 @@
 		<div id="helpModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onclick="closeDialog()">&times;</span>
-				<h2>EventEASE Event Page Guide</h2>
-				<p>Welcome to the EventEASE event discovery page. This guide will help you navigate and utilize the features available on this page.</p>
+				<h2>EventEASE Checkout Page Guide</h2>
+				<p>Welcome to the EventEASE Checkout page. This guide is designed to help you complete your ticket purchase smoothly and securely.</p>
 
 				<ul>
 					<li>
-						<strong>Exploring Events:</strong> Scroll through the list of events. Each event card provides a snapshot, including an image, event name, description, and timing.
+						<strong>Completing Payment Information:</strong> Enter your name as it appears on your card.  Enter your card number without spaces or dashes. Enter the expiration date of your card in MM/YY format. The CVV is the 3 or 4 digit code usually found on the back of your card.
 					</li>
 					<li>
-						<strong>Adding Events to Your Planner:</strong> Click on the 'Add to Planner' button on any event card to include it in your personal planner.
+						<strong>Reviewing Your Order:</strong> Before proceeding, review the list of tickets and total amount in the 'Your Order' section. This ensures that your order is correct.
 					</li>
 					<li>
-						<strong>Viewing Your Daily Planner:</strong> Your selected events will appear in the planner section at the bottom of the page. The planner organizes your events based on their scheduled times.  You can remove an event by clicking the 'X' button next to each event.
+						<strong>Making Payment:</strong> You may click the 'Make Payment` button to process your payment.  An alert will confirm your purchase and your tickets can be found on the View Tickets page.
 					</li>
 				</ul>
 				<p>The navbar at the bottom of the screen helps you navigate through the <strong>EventEASE</strong> app. Use the <strong>home</strong> icon to return to the main menu, and the <strong>question mark</strong> icon to open this help dialog.</p>
