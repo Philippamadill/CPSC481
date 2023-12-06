@@ -107,7 +107,7 @@
 		document.addEventListener('DOMContentLoaded', function() {
 			var imageElement = document.getElementById('map');
 
-			var images = ['images/map-image.png', 'images/map-image0.png'];
+			var images = ['images/vendddor.png', 'images/map-image0.png'];
 			var currentIndex = 0;
 
 			setInterval(function() {
@@ -166,16 +166,20 @@
 			<div class="modal-content">
 				<span class="close" onclick="closeDialog()">&times;</span>
 				<h2>EventEase Map User Guide</h2>
-				<p>Beneath the map, you'll find buttons corresponding to various points of interest. Click on these to discover their locations and receive guidance on how to get there.<p>
+				<p>Beneath the map, you'll find buttons corresponding to various points of interest. Click on these to discover their locations and receive guidance on how to get there.  You are also able to interact with the map by zooming in and out or dragging.  You can press the <strong>Reset Map</strong> button to bring the map back to its original orientation.<p>
 				<ul>
 					<li><strong>Washrooms:</strong> Tap here to view the locations of all washrooms within the venue.</li>
 					<li><strong>ATMs:</strong> Need cash? This button will show you where ATMs are located.</li>
+					
+					<li><strong>Food and Beverage:</strong> Explore food and beverage options available.</li>
+					
 					<li><strong>Vendors:</strong> Find the full list of vendors and their booth numbers here.</li>
-					<li><strong>Parking:</strong> Displays parking areas and availability.</li>
+					
 					<li><strong>Information Desks:</strong> For any inquiries or assistance, locate an information desk with this option.</li>
-					<li><strong>Emergency Exits:</strong> Tap this for a map to identify all the safety exits.</li>
+					
+					<li><strong>Base Map:</strong> Tap this for the map to return to the original view, displaying a flashing pointer indicating where you are in the venue.</li>
 				</ul>
-				<p>As always, the <strong>navbar</strong> is present along the bottom of the screen. Use the <strong>home</strong> icon to return to the main menu and navigate elsewhere. Use the <strong>star</strong> icon to view your favourite vendors for easy access. The <strong>question mark</strong> icon opens this help dialog.</p>
+				<p>As always, the <strong>navbar</strong> is present along the bottom of the screen. Use the <strong>home</strong> icon to return to the main menu and navigate elsewhere. The <strong>question mark</strong> icon opens this help dialog.</p>
 				<p>If you need further assistance, please reach out to our support team at support@EventEase.com or 719-266-2837.</p>
 			</div>
 		</div>
@@ -190,6 +194,15 @@
 				document.getElementById('helpModal').style.display = "none";
 			}
 		</script>
+		<div class="arrow" onclick="goBack()">
+            ← 
+        </div>
+		<script>
+			function goBack() {
+				window.history.back();
+			}
+		</script>
+		
     </div>
 </body>
 </html>
