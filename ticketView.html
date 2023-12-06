@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventEASE - View Tickets</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+			<img src="images/gps-marker-icon.jpg" alt="GPS Marker" id="gps-icon">
+            <div class="logo">EventEASE</div>
+			<div class="page-title" style="margin-bottom: 50px;">Your Tickets</div>
+        </div>
+		<div class="ticket-list">
+			<!-- <div class="tickets"> -->
+				<!-- <div class="ticket-item"> -->
+					<!-- <span class="ticket-name">Concert XYZ</span> -->
+					<!-- <span class="ticket-date">Nov 5, 2023</span> -->
+				<!-- </div> -->
+			<!-- </div> -->
+			<div class="tickets">
+				<div class="ticket">
+					<h3>CALGARY EXPO - VIP Pass</h3>
+					<p>Date: April 25-28, 2024 | 9:00AM - 9:00PM</p>
+					<p>Location: Stampede Park, Calgary</p>
+					<img src="images/barcode.png" alt="Barcode for Entry" class="barcode">
+				</div>
+			</div>
+		</div>
+		<div class="index-buttons" style="margin-top: 60px;">
+			<button>Purchase More Tickets</button>
+		</div>
+		<div class="navbar">
+			<a href="index.html"><div class="nav-item">⌂</div></a>
+			
+			<a onclick="openDialog();"><div class="nav-item">?</div></a>
+		</div>
+		<div id="helpModal" class="modal">
+			<div class="modal-content">
+				<span class="close" onclick="closeDialog()">&times;</span>
+				<h2>EventEASE Event Page Guide</h2>
+				<p>Welcome to the EventEASE event discovery page. This guide will help you navigate and utilize the features available on this page.</p>
+
+				<ul>
+					<li>
+						<strong>Exploring Events:</strong> Scroll through the list of events. Each event card provides a snapshot, including an image, event name, description, and timing.
+					</li>
+					<li>
+						<strong>Adding Events to Your Planner:</strong> Click on the 'Add to Planner' button on any event card to include it in your personal planner.
+					</li>
+					<li>
+						<strong>Viewing Your Daily Planner:</strong> Your selected events will appear in the planner section at the bottom of the page. The planner organizes your events based on their scheduled times.  You can remove an event by clicking the 'X' button next to each event.
+					</li>
+				</ul>
+				<p>The navbar at the bottom of the screen helps you navigate through the <strong>EventEASE</strong> app. Use the <strong>home</strong> icon to return to the main menu, and the <strong>question mark</strong> icon to open this help dialog.</p>
+				
+				<p>If you need further assistance or have inquiries beyond what is covered here, please contact our support team at support@EventEase.com or call us at 719-266-2837.</p>
+			</div>
+		</div>
+
+		<script>
+			// When the user clicks the ?, open the modal 
+			function openDialog() {
+				document.getElementById('helpModal').style.display = "block";
+			}
+			
+			// When the user clicks on (x), close the modal
+			function closeDialog() {
+				document.getElementById('helpModal').style.display = "none";
+			}
+		</script>
+		
+    </div>
+</body>
+</html>
