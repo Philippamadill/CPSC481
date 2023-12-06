@@ -696,7 +696,7 @@ input[type="number"] {
 
 .payment-container {
     width: 100%;
-    padding: 20px;
+    padding: 0px;
     box-sizing: border-box;
 }
 
@@ -719,6 +719,7 @@ input[type="text"], textarea {
 .expiry-cvv {
     display: flex;
     justify-content: space-between;
+	margin-top: -10px;
 }
 
 .expiry-cvv > div {
@@ -726,7 +727,7 @@ input[type="text"], textarea {
 }
 
 .total-amnt {
-	margin-top: 23px;
+	margin-top: -20px;
 	font-weight: bold;
 	font-size: 16px;
 }
@@ -741,6 +742,43 @@ input[type="text"], textarea {
     cursor: pointer;
     font-size: 16px;
 	font-weight: bold;
+}
+
+#receipt-details {
+	min-height: 100px;
+    max-height: 100px; /* Adjust as needed */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 0px;
+}
+
+#receipt-details::-webkit-scrollbar {
+    width: 6px;
+}
+
+#receipt-details::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#receipt-details::-webkit-scrollbar-thumb {
+    background: #4C7AFF;
+}
+
+#receipt-details::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+#ticket-summary {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#ticket-summary li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
 }
 
 .navbar {

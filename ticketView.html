@@ -34,6 +34,34 @@
 		<div class="index-buttons" style="margin-top: 60px;">
 			<a href="ticketBuy.html"><button>Purchase More Tickets</button></a>
 		</div>
+		
+		<script>
+			
+			document.addEventListener('DOMContentLoaded', function() {
+				var ticketsContainer = document.querySelector('.tickets');
+
+				// Retrieve purchased tickets from storage
+				var purchasedTickets = JSON.parse(localStorage.getItem('purchasedTickets') || '[]');
+
+				// Dynamically create and append ticket elements
+				purchasedTickets.forEach(function(ticket) {
+					var ticketDiv = document.createElement('div');
+					ticketDiv.className = 'ticket';
+					ticketDiv.innerHTML = `
+						<h3>${ticket.name} - ${ticket.type}</h3>
+						<p>Date: ${ticket.date} | ${ticket.time}</p>
+						<p>Location: ${ticket.location}</p>
+						<img src="images/barcode.png" alt="Barcode for Entry" class="barcode">
+					`;
+					ticketsContainer.appendChild(ticketDiv);
+				});
+			});
+
+
+		</script>
+		
+		
+		
 		<div class="navbar">
 			<a href="index.html"><div class="nav-item">⌂</div></a>
 			

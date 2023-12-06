@@ -90,9 +90,43 @@
 						event.preventDefault(); // Prevent the default button action
 						alert('Please enter valid quantities and select at least one ticket.');
 					} else {
-						// Your existing code to save data and navigate to checkout
-						// ...
+						
+						// Save the day selection
+						var day = document.getElementById('day').value;
+						localStorage.setItem('selectedDay', day);
+
+						// Save the quantities and prices
+						var tickets = {};
+						document.querySelectorAll('.purchase-options input[type="number"]').forEach(function(input) {
+							var name = input.name;
+							var value = input.value;
+							tickets[name] = value;
+						});
+						localStorage.setItem('tickets', JSON.stringify(tickets));
+
+						// Save the total amount
+						var totalAmount = document.querySelector('.sub-amnt').textContent;
+						localStorage.setItem('totalAmount', totalAmount);
+						
+						// Redirect to the checkout page
+						window.location.href = 'checkout.html'; // Replace with your actual checkout page URL
+					
 					}
+				});
+				
+				document.addEventListener('DOMContentLoaded', function() {
+					// Load saved ticket quantities from localStorage
+					var savedTickets = JSON.parse(localStorage.getItem('tickets'));
+					if (savedTickets) {
+						document.querySelectorAll('.purchase-options input[type="number"]').forEach(function(input) {
+							if (savedTickets[input.name]) {
+								input.value = savedTickets[input.name];
+							}
+						});
+					}
+
+					// Calculate the total after loading the quantities
+					calculateTotal();
 				});
 			</script>
 
